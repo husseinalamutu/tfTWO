@@ -23,18 +23,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.0.9
-
       - name: Lint Terraform code
         run:  terraform fmt -check -recursive
           
   terraform-plan:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/feature-a'
+    if: github.ref == 'refs/heads/dev'
     steps:
       - name: Code Checkout
         uses: actions/checkout@v3
