@@ -191,7 +191,7 @@ resource "aws_autoscaling_group" "greymatter" {
   target_group_arns         = [aws_lb_target_group.greymatter.arn]
 
   launch_template {
-    id      = aws_launch_template.nginx-lt.id
+    id      = aws_launch_template.nginx.id
     version = "$Latest"
   }
 }
