@@ -1,9 +1,7 @@
-name: Terraform Workflow
-
 on:
   push:
     branches:
-      - dev
+      - dev-branch
 
   pull_request:
     types: [closed]
@@ -23,6 +21,7 @@ jobs:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
       - name: Format Terraform code
+        working-directory: ./
         run: terraform fmt
 
   plan:
@@ -37,8 +36,10 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
     - name: Terraform init
+      working-directory: ./
       run: terraform init
     - name: Terraform Plan
+      working-directory: ./
       run: terraform plan
 
   apply:
@@ -51,10 +52,11 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
     - name: Terraform init
+      working-directory: ./
       run: terraform init
     - name: Terraform Apply
+      working-directory: ./
       run: terraform apply -auto-approve
-
 
   destroy:
     needs: lint
@@ -69,5 +71,7 @@ jobs:
       uses: hashicorp/setup-terraform@v2
     - name: Terraform init
       run: terraform init 
+      working-directory: ./
     - name: Terraform Destroy
+      working-directory: ./
       run: terraform destroy -auto-approve
