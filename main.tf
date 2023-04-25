@@ -169,12 +169,12 @@ resource "aws_lb_listener" "front_end" {
 }
 
 # Add auto scale capabilities to the EC2 instances
-resource "aws_launch_template" "nginx-temp" {
+resource "aws_launch_template" "greymatter" {
   name_prefix            = "nginx-temp"
   image_id               = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
   key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.vpc_default.id]
+  vpc_security_group_ids = [aws_security_group.greymatter.id]
   user_data              = file("nginx.sh")
 
    tag_specifications {
