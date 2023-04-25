@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - dev-branch
+      - dev
 
   pull_request:
     types: [closed]
